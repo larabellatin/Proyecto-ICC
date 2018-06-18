@@ -47,8 +47,27 @@ def listas():
     print("listas")
 
 def funciones():
-    ### info de variables
-    print("funciones")
+    print("Las funciones básicamente se usan para repetir un pedazo de código con diferentes datos.")
+    print("Es decir, cuando se quiere realizar las  mismas operaciones con distintos parámetros, se colocan dentro de una función de esta manera:")
+    print("def nombre-de-funcion(lista de parametros):")
+    print('\t'"declaración      (lo que se quiere hacer con los parámtros dados)")
+    print("Para llamar a una función debemos escribir su nombre y datos de esta manera:")
+    print('\t''\t'"funcion(x)")
+    print("De esta manera, podemos crear, por ejemplo una función que devuelva la suma de dos valores x e y.")
+    print("Cuál crees que será la forma correcta de definirla?")
+    print("a. def suma(x y):"'\n''\t'"return x+y")
+    print("b. def suma(x, y):"'\n''\t'"return x+y")
+    b = input("Opción 'a' o 'b'? ")
+    if b == 'a':
+        print("¡Así es! Las funciones se definen separando los parámetros con comas cuando hay más de uno.")
+    else:
+        print("Los párametros en la definición de una función se deben escribir separados por comas.")
+    print("Ahora que hemos definido la función suma(), intenta llamar esa función en la siguiente línea con dos valores numéricos.")
+    a = yourturn()
+    print("¡Muy bien! El resultado de tu función es", eval(a))
+
+def suma(x, y):
+    return x + y
 
 def strings():
     ### info de variables
