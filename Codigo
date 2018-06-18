@@ -36,7 +36,7 @@ def variables():
 
 def estructurasdecontrolselectivas():
     ### info de variables
-    print("selectivas")
+    print("Lo primero que debes saber sobre las estructuras selectivas es que se usan para para tomar decisiones colocando condiciones. Existen tres tipos.")
 
 def estructurasdecontrolrepetitivas():
     ### info de variables
