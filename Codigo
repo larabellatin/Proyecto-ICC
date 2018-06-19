@@ -32,27 +32,147 @@ def variables():
     c = yourturn().replace(' ','')
     nombre = c.replace('nombre=','').replace('"', '').capitalize()
     print(f"Un gusto conocerte, {nombre}, lo estás haciendo muy bien.")
+    otra()
 
 
 def estructurasdecontrolselectivas():
-    ### info de variables
-    print("Lo primero que debes saber sobre las estructuras selectivas es que se usan para para tomar decisiones colocando condiciones. Existen tres tipos.")
+    ### info de estructuras de control selectivas
+    print("selectivas")
 
 def estructurasdecontrolrepetitivas():
-    ### info de variables
+    ### info de estructuras de control repetitivas
     print("repetitivas")
 
 def listas():
-    ### info de variables
-    print("listas")
+    ###info de listas
+    lista=[1, 2, 3, 4, 5]
+    print("Las listas son una secuencia de valores encerrados entre corchetes y separados mediante comas.")
+    print("Permiten almacenar cualquier tipo de datos o agrupar una secuencia de datos en una sola variable para accederlos por posición.")
+    print("Se puede tener una lista de números, strings y hasta listas")
+    print("Las listas se declaran así:")
+    print('\t'"lista = [1, 2, 3, 4, 5]")
+    print("Y tienen las siguientes aplicaciones:")
+    print("Si se desea imprimir cada elemento por separado lo puedes realizar mediante un “for”")
+    print('\t'"for i in lista:")
+    print('\t''\t'"print(i)")
+    print('\n'"Si se desea agregar un valor a la lista puede hacerse mediante la función “append”")
+    print('\t'"append.lista=input(“ingresar nuevo elemento”)")
+    print('\n'"Si se desea sacar un elemento de la lista puede utilizarse la función “remove“ con el valor que se desea eliminar.")
+    print('\t'"lista.remove(2)")
+    lista2 = lista.copy()
+    lista2.remove(2)
+    print('\t'"Esto dará como resultado la lista:", lista2)
+    print('\n'"Si se desea hallar la posición de un elemento se debe utilizar la función “index“")
+    print('\t'"lista=[1,2,3,4,5]")
+    print('\t'"print(lista.index(2))")
+    print('\t'">>1")
+    print('\t''\t'"*Recordar que la posición dentro de cada lista comienza desde cero")
+    print("Ahora es tu turno de aplicar estas funciones a la lista [1, 2, 3, 4, 5]")
+    print("En la siguiente línea elimina el número 3 de la lista.")
+    resp = yourturn()
+    eval(resp)
+    print("El resultado es:", lista)
+    print('\n'"Además, se puede recorrer una lista de principio a fin de dos formas distintas:")
+    print('\t'"I. Directa:")
+    print('\t''\t'"letras = [A, B, C]")
+    print('\t''\t'"for i in letras:")
+    print('\t''\t'"print(i, end=" ")    ")
+    print('\n''\t'"II. Indirecta:")
+    print('\t''\t'"letras = [A, B, C]")
+    print('\t''\t'"for i in range(len(letras)):")
+    print('\t''\t''\t'"print(letras[i], end=" ")")
+    print("Eso es todo por hoy.")
+    otra()
+
 
 def funciones():
-    ### info de variables
-    print("funciones")
+    print("Las funciones básicamente se usan para repetir un pedazo de código con diferentes datos.")
+    print("Es decir, cuando se quiere realizar las  mismas operaciones con distintos parámetros, se colocan dentro de una función de esta manera:")
+    print("def nombre-de-funcion(lista de parametros):")
+    print('\t'"declaración      (lo que se quiere hacer con los parámtros dados)")
+    print("Para llamar a una función debemos escribir su nombre y datos de esta manera:")
+    print('\t''\t'"funcion(x)")
+    print("De esta manera, podemos crear, por ejemplo una función que devuelva la suma de dos valores x e y.")
+    print("Cuál crees que será la forma correcta de definirla?")
+    print("a. def suma(x y):"'\n''\t'"return x+y")
+    print("b. def suma(x, y):"'\n''\t'"return x+y")
+    b = input("Opción 'a' o 'b'? ")
+    if b == 'a':
+        print("¡Así es! Las funciones se definen separando los parámetros con comas cuando hay más de uno.")
+    else:
+        print("Los párametros en la definición de una función se deben escribir separados por comas.")
+    print("Ahora que hemos definido la función suma(), intenta llamar esa función en la siguiente línea con dos valores numéricos.")
+    a = yourturn()
+    print("¡Muy bien! El resultado de tu función es", eval(a))
+    print("Hemos terminado por hoy.")
+    otra()
+
+def suma(x, y):
+    return x + y
 
 def strings():
-    ### info de variables
-    print("strings")
+  ##info de string
+    print("La cadena de caracteres, palabras, frases o “strings” es una secuencia de elementos o caráteres ordenados.")
+    print("La posición de cada carácter dentro de una cadena empieza en 0.")
+    print('\n'"Al declarar una variable con un string como valor se utilizan comillas de la siguiente manera:")
+    print('\t'"cadena = 'Soy un string'")
+    print("También se pueden usar comillas dobles o triples.")
+    print('\n'"Algunas de las funciones del “string” son: ")
+    print("Función str(): Se utiliza un número como cadena, al convertirlo en una cadena de caracteres.")
+    print('\t'"Ln1 = 0")
+    print('\t'"Texto = ‘El valor de logaritmo natural es ’ + str(Ln1)")
+    Ln1 = 0
+    texto = "El logaritmo natural es " + str(Ln1)
+    print('\t'"Al imprimir el texto obtenemos:", texto)
+    print('\n'"Si tenemos una cadena como A = 'Hola mundo', podemos aplicar también las siguientes funciones.")
+    print("Función len(): Se utiliza para hallar la cantidad de elementos de un “string”.")
+    print('\t'"print(len(A))")
+    print("Inténtalo tú")
+    A = 'Hola mundo'
+    d = yourturn()
+    print(">>Tu respuesta es: ", end='')
+    eval(d)
+    print('\t'"*Recuerda: cada elemento dentro de la frase cuenta como carácter.")
+    print('\n'"Función find(): Se utiliza para hallar la posición de un “string” contenido en otro.")
+    print('\t'"print(A.find(“mundo”))")
+    print('\t'">>>5")
+    print('\n'"Función replace(): Se utiliza para reemplazar un “string” por otro.")
+    print('\t'"print(A.replace(‘mundo’, ‘a todos’))")
+    print('\t'">>>Hola a todos")
+    print('\n'"Función capitalize(): Se utiliza para capitalizar el primer caracter de la cadena o frase.")
+    print("Si nuestro string A se viera así: A = 'hola mundo")
+    print("Podríamos usar esta función de la siguiente manera: ")
+    print('\t'"print(A.capitalize())")
+    print('\t'">>>Hola mundo")
+    print('\n'"Función lower(): Se utiliza para convertir en minúscula toda la cadena.")
+    print('\t'"print(A.lower())")
+    print('\t'">>>hola mundo")
+    print('\n'"Función upper():Se utiliza para convertir en mayúscula toda la cadena.")
+    print('\t'"print(A.upper())")
+    print('\t'">>>HOLA MUNDO")
+    print('\n'"Función strip(): Se utiliza para eliminar los espacios en blanco de los costados.")
+    print('\t'"string = “ Hola mundo “")
+    print('\t'"print(string.strip( ))")
+    print('\t'">>>Hola mundo")
+    print('\n'"Función join(): Se utiliza para devolver cada elemento de una cadena separada por un carácter que fue pasado al join().")
+    print('\t'"B = ‘Quiero ser un hacker’")
+    print('\t'"print(“,”.join(B))")
+    print('\t'">>>Q,u,i,e,r,o, ,s,e,r, ,u,n, ,h,a,c,k,e,r")
+    print('\n'"Función split(): Se utiliza para crear una lista donde cada elemento es una palabra del “string”.")
+    print('\t'"B = “Quiero ser un hacker”")
+    print('\t'"lista = A.split(‘ ‘)")
+    print('\t'"print(lista)")
+    print('\t'">>>['Quiero', 'ser', 'un', 'hacker']")
+    print("Ahora que conoces todas estas funciones para strings, es tu turno de probarlas.")
+    print("A continuación declara una variable 'miString' con un string que tu escojas como valor usando comillas simples.")
+    miString = yourturn().replace('miString = ','').replace("miString=", '').replace("'", '')
+    print("Cambia todo el string a mayúsculas:")
+    mayus = yourturn()
+    print('\t'"Tu resultado es:", eval(mayus))
+    print("Convierte tu string en una lista.")
+    split = yourturn()
+    print('\t'"Tu resultado es:", eval(split))
+    otra()
 
 
 def question():
@@ -66,5 +186,15 @@ def question():
     else:
         print("Lo sentimos, el número ingresado no es válido.")
         question()
+
+def otra():
+    otra = input("Quieres empezar de nuevo? (S/N): ").lower()
+    if otra =='s':
+        question()
+    elif otra == 'n':
+        print("¡Hasta luego!")
+    else:
+        print("Por favor ingresa 's' para sí o 'n' para no.")
+        otra()
 
 question()
