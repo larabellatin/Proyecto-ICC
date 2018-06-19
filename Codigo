@@ -1,425 +1,71 @@
-#Programa Principal
-
-Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
+usuarios = {}
 nombre = ''
 
-print("¡Hola!")
-print("Podemos revisar los siguientes temas:"'\n')
+Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
 
-for i in Temas:
-  print(f"{Temas.index(i)+1}. " + i)
+def ProgramaPrincipal():
+    nombre = input("Ingresa tu usuario: ").capitalize()
+    if nombre in usuarios:
+        print('\n'f"Bienvenido/a de nuevo, {nombre}")
+        continuar()
+    else:
+        print(f"Es un gusto conocerte, {nombre}")
+        usuarios[nombre] = ''
+        question()
 
-def yourturn():
-    a = input('\t')
-    return a
+
+def continuar():
+    tema = usuarios[nombre]
+    print(f"La ultima vez te quedaste en {tema}")
+    continuar = input("Deseas continuar donde te quedaste? (S?N): ").lower()
+    if continuar == 's':
+        eval(tema)
+    elif continuar == 'n':
+        question()
+    else:
+        print("Por favor ingresa 's' para sí o 'n' para no.")
+        continuar()
+
 
 def variables():
   ### info de variables
-    print("Lo primero que debes saber sobre las variables es que se usan para almacenar información de cualquier tipo.")
-    print("Se usan así:")
-    print('\t'"a = 1+2")
-    print("La variable 'a' almacena el valor de 1+2, o sea 3.")
-    print("Ahora tú intenta definir una variable b con el número 4 como valor en la siguiente línea.")
-    b = yourturn()
-    if b.replace(' ','') == "b=4":
-        print("¡Buen trabajo!")
-    else:
-        print("Tu respuesta debería verse similar a esto: b = 4")
-    print('')
-    print("Las variables también pueden almacenar texto.")
-    print("Para esto, deben ser declaradas entre comillas de la siguiente manera: a = 'valor'.")
-    print("En la siguiente línea declara una variable 'nombre' cuyo valor sea tu primer nombre.")
-    c = yourturn().replace(' ','')
-    nombre = c.replace('nombre=','').replace('"', '').capitalize()
-    print(f"Un gusto conocerte, {nombre}, lo estás haciendo muy bien.")
-    otra()
+    print("Variables")
 
 
 def estructurasdecontrolselectivas():
- ### info de estructuras selectivas
-    print("Estructuras de Control Selectivas")
-    print("Lo primero que debes saber sobre las estructuras de control selectivas es que se usan para para tomar decisiones del tipo booleano colocando condiciones. Estas condiciones siempre tendran que acabar en verdadero o falso, si es verdadero ejecutaremos un fragmento de código, sino ejecutaremos otro. ")
-    print("para esto usaremos if, elif y else.")
-    print("Existen tres tipo:")
-    print("1. Simples")
-    print("2. Dobles")
-    print("3. Anidadas")
-    print("")
-    print("Empecemos...")
-    print("")
-    print("Estructuras selectivas simples")
-    print("Las estructuras simples están compuestas de una sola condición si es verdadera (if) ejecutará la acción, si la condición es falsa no hará nada.")
-    print("La estructura es:")
-    print(" if condición:")
-    print("   bloque")
-    print("Ejemplo:")
-    print("# Crear un programa que imprima asteriscos cuando el número que ingrese el usuario sea múltiplo de dos")
-    print("  x=int(input('ingrese número')")
-    print("  if x%2==0:")
-    print("    print('******')")
-    print("Ahora es tu turno...")
-    print("Escribe la condición (if), sólo la condición, que haga que el programa imprima 7 asteriscos cuando el número que ingrese el usuario sea múltiplo de siete")
-    print("tomando como base:")
-    print("  x=int(input('ingrese número: ')")
-    ter= "if x%7==0"
-    con= input("La condición es: ")
-    if con == ter:
-        print("*******")
-        print("¡bien hecho!")
-    else:
-        print("")
-        print("Debería ser: if x%7==0")
-
-    print("")
-    print("Estructuras selectivas dobles")
-    print("Las estructuras dobles están compuestas de una sola condición, si es verdadera (if) ejecutará las acciones para la condición verdadera y si es falsa (else) ejecutará las acciones para la condición falsa.")
-    print("Su estructura es:")
-    print(" if condición:")
-    print("    bloque 1")
-    print(" else:")
-    print("    bloque 2")
-    print("Ejemplo:")
-    print("# Elaborar un programa que cuando el usuario ingrese su edad indique si es mayor o menor de edad ")
-    print("  edad=int(input('ingrese edad: ')")
-    print("  if x<18:")
-    print("    print('Es menor de edad')")
-    print("  else:")
-    print("    print('Es mayor de edad')")
-    print("Ahora es tu turno...")
-    print("Escriba las condiciones, verdadera y falsa, para que si el color del semáforo es verde indique 'puede cruzar' y sino que indique 'espere'")
-    cli= input("condición verdadera: ")
-    bt=print("   print('puede cruzar')")
-    cla= input("condición falsa: ")
-    tu=print("   print('espere')")
-    print("")
-    if cli == "if semáforo==verde:" and cla == "else:":
-        print("¡buen trabajo!")
-    else:
-        print("Deberia ser:")
-        print("  if semáforo==verde:")
-        print("    print('puede cruzar')")
-        print("  else:")
-        print("    print('espere')")
-
-    print("")
-    print("Estructuras selectivas anidadas")
-    print("Las estructuras anidadas están compuestas de multiples selectivas simples que están unidas por el comando elif o if anidados.")
-    print("* La estructura anidada con if anidados, if dentro de otro if, sería de la siguiente forma:")
-    print(" if condición:")
-    print('\t'"if condición:")
-    print('\t'"  bloque 1")
-    print('\t'"else:")
-    print('\t'"  bloque 2")
-    print(" else:")
-    print('\t'"bloque 3")
-    print("Ejemplo:")
-    print("# Eleborar un programa donde indique que si el usuario tiene una edad de hasta 15 años, pagará 10 soles; si tiene desde 16 hasta 59, pagará 15 soles; y si es mayor de 60, pagará 5 soles.")
-    print("  edad=int(input('ingrese edad: ')")
-    print("  if x<=60:")
-    print("    if edad<=15:")
-    print("      print('10 soles')")
-    print("    else:")
-    print("      print('15 soles')")
-    print("  else:")
-    print("    print ('5 soles')")
-    print("Ahora es tu turno...")
-    print("Escriba las condiciones de un programa donde indique que si es menor de 12 años, 'es infante'; si tiene entre 12 y 17 años, 'es adolescente'; y si tiene de 18 a más, indique que 'es mayor de edad'")
-    print("Teniendo como base:")
-    print("edad= int(input('ingrese la edad: '))")
-    coni1= input("condición 1: ")
-    coni2= input("   condición 2:")
-    print("     es infante")
-    coni3= input("   condición3: ")
-    print("     es adolescente")
-    coni4= input("condición 4: ")
-    print("")
-    l1= "if edad< 18:"
-    l2= "if edad<12:"
-    l3= "else:"
-    l4= "else:"
-    print("")
-    if coni1==l1 and coni2==l2 and coni3==l3 and coni4==l4:
-        print("¡Buen trabajo!")
-    else:
-        print("deberia ser:")
-        print("edad= int(input('ingrese la edad: '))")
-        print("if edad<18:")
-        print("  if edad<12:")
-        print("    print('es infante')")
-        print("  else:")
-        print("    print('es adolescente')")
-        print("else:")
-        print("  print ('es mayor de edad')")
-
-
-    print("")
-    print("* La estructura anidada usando elif sería de la siguiente forma:")
-    print(" if condición:")
-    print('\t'"bloque 1")
-    print(" elif condición:")
-    print('\t'"bloque 2")
-    print(" elif condición:")
-    print('\t'"bloque 3")
-    print(" else:")
-    print('\t'"bloque 4")
-    print("Ejemplo:")
-    print("# Crear un programa donde al ingresar 2 números indique cuál es el menor o si son iguales")
-    print(" a=int(input('Ingrese el número 1: ')")
-    print(" b=int(input('Ingrese el número 2: ')")
-    print(" if a<b:")
-    print('\t'"print(a)")
-    print(" elif b<a:")
-    print('\t'"print(b)")
-    print(" else:")
-    print('\t'"print(a,'es igual que', b)")
-    print("Ahora es tu turno...")
-    print("Escribe las condiciones de un programa donde al ingresar 2 números indique cuál es el mayor o si son iguales")
-    print("Teniendo como base:")
-    print(" a=int(input('Ingrese el número 1: ')")
-    print(" b=int(input('Ingrese el número 2: ')")
-    coni5=input("condición 1: ")
-    print('\t'"print(a)")
-    coni6=input("condición 2: ")
-    print('\t'"print(b)")
-    coni7 =input("condición 3: ")
-    print('\t'"print(a,'es igual que', b)")
-    lala1= "if a>b:"
-    lala2="elif b>a:"
-    lala3= "else:"
-    print("")
-    if coni5==lala1 and coni6==lala2 and coni7==lala3:
-        print("¡Bien hecho!")
-    else:
-        print("Debería ser: ")
-        print(" a=int(input('Ingrese el número 1: ')")
-        print(" b=int(input('Ingrese el número 2: ')")
-        print(" if a>b:")
-        print('\t'"print(a)")
-        print(" elif b>a:")
-        print('\t'"print(b)")
-        print(" else:")
-        print('\t'"print(a,'es igual que', b)")
-
-
-    print("")
-    print("De esta forma puedes hacer cuantas condiciones quieras, usando la cantidad de elif e if que desees")
-    print("¡Muy buen trabajo, sigue así!")
-    otra()
-
-
+    ### info de estructuras de control selectivas
+    print("selectivas")
 
 def estructurasdecontrolrepetitivas():
     ### info de estructuras de control repetitivas
-    print("Estructuras de Control Repetitivas")
-    print("Lo primero que debes saber de las estructuras de control repetitivas es que estas nos permiten ejecutar el mismo código de manera repetitiva mientras se cumpla una condición. En esta estructura usaremos el for, in y while. ")
-    print("*Algo importante que hay que saber antes de empezar a aprender esta estructura es que siempre hay que poner una instrucción dentro del bloque que provoque que la condición deje de cumplirse, de lo contrario será un ciclo infinito.")
-    print('\n'"Bucle While")
-    print("El bucle While lo usamos para que 'mientras que' una condición se cumpla se ejecute la misma acción")
-    print("La estructura es:")
-    print('\t'"while condición:")
-    print('\t''\t'"instrucción para salir del bucle")
-    print('\t''\t'"bloque")
-
-    print('\n'"Ejemplo:")
-    print("# Escribir un programa que imprima los números menores que 40, incluyendo al 40, hasta el 1, incluyendo el 1, que desciendan de uno en uno")
-    print('\t'"x=41")
-    print('\t'"while x>0:")
-    print('\t''\t'"x=x-1")
-    print('\t''\t'"print(x)")
-    print('\n'"Ahora es tu turno...")
-    print("Escribe las condiciones para que un programa imprima los número pares del 50 hasta el 2, incluyendo el 2.")
-    print("Teniendo como base:")
-    print(" x=52")
-    wi1=input(" Condición 1: ")
-    wi2= input(" Instrucción: ")
-    print(" print(x)")
-    lele1="while x>3:"
-    lele2="x=x-2"
-    print("")
-    if wi1==lele1 and lele2==wi2:
-        print("¡Buen trabajo!")
-    else:
-        print("Debería ser:")
-        print("  x=52")
-        print("  while x>3:")
-        print("    x=x-2")
-        print("    print(x)")
-
-    print("")
-    print("Bucle For - in")
-    print("El bucle For lo usamos para iterar a través de rangos o de colecciones de datos. ")
-    print("La estructura es:")
-    print(" i= valor")
-    print(" for i in secuencia:")
-    print("     instrucción que lo saca el bucle")
-    print("     bloque")
-    print("* La secuencia puede estar dada por rangos, su estructura es: range(empieza,termina,intervalos)")
-    print("Ejemplo:")
-    print("# Crea un programa que imprima la suma de los número pares desde el 0 al 200, incluyendo al 200")
-    print("contador=0")
-    print("for i in range (0,202,2):")
-    print("    contador=contador+i")
-    print("print(contador)")
-    print("Escibe las condiciones para que un programa imprima la suma de los número del 50 al 250, con un intervalo de 3")
-    print("Teniendo como base:")
-    print("contador=0")
-    fo1= input("condición1: ")
-    fo2= input("instrucción: ")
-    print("print(contador)")
-    lele3="for i in range (50,252,3):"
-    lele4="    contador=contador+i"
-    print("")
-    if fo1==lele3 and fo2==lele4:
-        print("¡Bien hecho!")
-    else:
-        print("Debería ser:")
-        print("contador=0")
-        print("for i in range (50,252,3):")
-        print("    contador=contador+i")
-        print("print(contador)")
-    print("")
-    print("Un gusto haberte conocido, lo estas haciendo muy bien")
-    otra()
+    print("repetitivas")
 
 def listas():
-    ###info de listas
-    lista=[1, 2, 3, 4, 5]
-    print("Las listas son una secuencia de valores encerrados entre corchetes y separados mediante comas.")
-    print("Permiten almacenar cualquier tipo de datos o agrupar una secuencia de datos en una sola variable para accederlos por posición.")
-    print("Se puede tener una lista de números, strings y hasta listas")
-    print("Las listas se declaran así:")
-    print('\t'"lista = [1, 2, 3, 4, 5]")
-    print("Y tienen las siguientes aplicaciones:")
-    print("Si se desea imprimir cada elemento por separado lo puedes realizar mediante un “for”")
-    print('\t'"for i in lista:")
-    print('\t''\t'"print(i)")
-    print('\n'"Si se desea agregar un valor a la lista puede hacerse mediante la función “append”")
-    print('\t'"append.lista=input(“ingresar nuevo elemento”)")
-    print('\n'"Si se desea sacar un elemento de la lista puede utilizarse la función “remove“ con el valor que se desea eliminar.")
-    print('\t'"lista.remove(2)")
-    lista2 = lista.copy()
-    lista2.remove(2)
-    print('\t'"Esto dará como resultado la lista:", lista2)
-    print('\n'"Si se desea hallar la posición de un elemento se debe utilizar la función “index“")
-    print('\t'"lista=[1,2,3,4,5]")
-    print('\t'"print(lista.index(2))")
-    print('\t'">>1")
-    print('\t''\t'"*Recordar que la posición dentro de cada lista comienza desde cero")
-    print("Ahora es tu turno de aplicar estas funciones a la lista [1, 2, 3, 4, 5]")
-    print("En la siguiente línea elimina el número 3 de la lista.")
-    resp = yourturn()
-    eval(resp)
-    print("El resultado es:", lista)
-    print('\n'"Además, se puede recorrer una lista de principio a fin de dos formas distintas:")
-    print('\t'"I. Directa:")
-    print('\t''\t'"letras = [A, B, C]")
-    print('\t''\t'"for i in letras:")
-    print('\t''\t'"print(i, end=" ")    ")
-    print('\n''\t'"II. Indirecta:")
-    print('\t''\t'"letras = [A, B, C]")
-    print('\t''\t'"for i in range(len(letras)):")
-    print('\t''\t''\t'"print(letras[i], end=" ")")
-    print("Eso es todo por hoy.")
-    otra()
-
+    ### info de listas
+    print("listas")
 
 def funciones():
-    print("Las funciones básicamente se usan para repetir un pedazo de código con diferentes datos.")
-    print("Es decir, cuando se quiere realizar las  mismas operaciones con distintos parámetros, se colocan dentro de una función de esta manera:")
-    print("def nombre-de-funcion(lista de parametros):")
-    print('\t'"declaración      (lo que se quiere hacer con los parámtros dados)")
-    print("Para llamar a una función debemos escribir su nombre y datos de esta manera:")
-    print('\t''\t'"funcion(x)")
-    print("De esta manera, podemos crear, por ejemplo una función que devuelva la suma de dos valores x e y.")
-    print("Cuál crees que será la forma correcta de definirla?")
-    print("a. def suma(x y):"'\n''\t'"return x+y")
-    print("b. def suma(x, y):"'\n''\t'"return x+y")
-    b = input("Opción 'a' o 'b'? ")
-    if b == 'a':
-        print("¡Así es! Las funciones se definen separando los parámetros con comas cuando hay más de uno.")
-    else:
-        print("Los párametros en la definición de una función se deben escribir separados por comas.")
-    print("Ahora que hemos definido la función suma(), intenta llamar esa función en la siguiente línea con dos valores numéricos.")
-    a = yourturn()
-    print("¡Muy bien! El resultado de tu función es", eval(a))
-    print("Hemos terminado por hoy.")
-    otra()
+    ###info de funciones
+    print("Funciones")
 
-def suma(x, y):
-    return x + y
 
 def strings():
-  ##info de string
-    print("La cadena de caracteres, palabras, frases o “strings” es una secuencia de elementos o caráteres ordenados.")
-    print("La posición de cada carácter dentro de una cadena empieza en 0.")
-    print('\n'"Al declarar una variable con un string como valor se utilizan comillas de la siguiente manera:")
-    print('\t'"cadena = 'Soy un string'")
-    print("También se pueden usar comillas dobles o triples.")
-    print('\n'"Algunas de las funciones del “string” son: ")
-    print("Función str(): Se utiliza un número como cadena, al convertirlo en una cadena de caracteres.")
-    print('\t'"Ln1 = 0")
-    print('\t'"Texto = ‘El valor de logaritmo natural es ’ + str(Ln1)")
-    Ln1 = 0
-    texto = "El logaritmo natural es " + str(Ln1)
-    print('\t'"Al imprimir el texto obtenemos:", texto)
-    print('\n'"Si tenemos una cadena como A = 'Hola mundo', podemos aplicar también las siguientes funciones.")
-    print("Función len(): Se utiliza para hallar la cantidad de elementos de un “string”.")
-    print('\t'"print(len(A))")
-    print("Inténtalo tú")
-    A = 'Hola mundo'
-    d = yourturn()
-    print(">>Tu respuesta es: ", end='')
-    eval(d)
-    print('\t'"*Recuerda: cada elemento dentro de la frase cuenta como carácter.")
-    print('\n'"Función find(): Se utiliza para hallar la posición de un “string” contenido en otro.")
-    print('\t'"print(A.find(“mundo”))")
-    print('\t'">>>5")
-    print('\n'"Función replace(): Se utiliza para reemplazar un “string” por otro.")
-    print('\t'"print(A.replace(‘mundo’, ‘a todos’))")
-    print('\t'">>>Hola a todos")
-    print('\n'"Función capitalize(): Se utiliza para capitalizar el primer caracter de la cadena o frase.")
-    print("Si nuestro string A se viera así: A = 'hola mundo")
-    print("Podríamos usar esta función de la siguiente manera: ")
-    print('\t'"print(A.capitalize())")
-    print('\t'">>>Hola mundo")
-    print('\n'"Función lower(): Se utiliza para convertir en minúscula toda la cadena.")
-    print('\t'"print(A.lower())")
-    print('\t'">>>hola mundo")
-    print('\n'"Función upper():Se utiliza para convertir en mayúscula toda la cadena.")
-    print('\t'"print(A.upper())")
-    print('\t'">>>HOLA MUNDO")
-    print('\n'"Función strip(): Se utiliza para eliminar los espacios en blanco de los costados.")
-    print('\t'"string = “ Hola mundo “")
-    print('\t'"print(string.strip( ))")
-    print('\t'">>>Hola mundo")
-    print('\n'"Función join(): Se utiliza para devolver cada elemento de una cadena separada por un carácter que fue pasado al join().")
-    print('\t'"B = ‘Quiero ser un hacker’")
-    print('\t'"print(“,”.join(B))")
-    print('\t'">>>Q,u,i,e,r,o, ,s,e,r, ,u,n, ,h,a,c,k,e,r")
-    print('\n'"Función split(): Se utiliza para crear una lista donde cada elemento es una palabra del “string”.")
-    print('\t'"B = “Quiero ser un hacker”")
-    print('\t'"lista = A.split(‘ ‘)")
-    print('\t'"print(lista)")
-    print('\t'">>>['Quiero', 'ser', 'un', 'hacker']")
-    print("Ahora que conoces todas estas funciones para strings, es tu turno de probarlas.")
-    print("A continuación declara una variable 'miString' con un string que tu escojas como valor usando comillas simples.")
-    miString = yourturn().replace('miString = ','').replace("miString=", '').replace("'", '')
-    print("Cambia todo el string a mayúsculas:")
-    mayus = yourturn()
-    print('\t'"Tu resultado es:", eval(mayus))
-    print("Convierte tu string en una lista.")
-    split = yourturn()
-    print('\t'"Tu resultado es:", eval(split))
+    ### info de variables
+    print("strings")
     otra()
 
 
 def question():
+    print("Podemos revisar los siguientes temas:"'\n')
+    for i in Temas:
+        print(f"{Temas.index(i)+1}. " + i)
     answer = int(input('\n'"Ingresa el número del tema que deseas aprender hoy: "))
     if answer - 1 in range(0, len(Temas)):
         t = Temas[answer-1].lower()
         x = t.replace(' ', '')
         print("¡Buena elección!")
         print(f"Hoy aprenderemos {t}.")
+        usuarios[nombre] = t
         eval(f"{x}()")
     else:
         print("Lo sentimos, el número ingresado no es válido.")
@@ -428,11 +74,12 @@ def question():
 def otra():
     otra = input("Quieres empezar de nuevo? (S/N): ").lower()
     if otra =='s':
-        question()
+        print("")
+        ProgramaPrincipal()
     elif otra == 'n':
         print("¡Hasta luego!")
     else:
         print("Por favor ingresa 's' para sí o 'n' para no.")
         otra()
 
-question()
+ProgramaPrincipal()
