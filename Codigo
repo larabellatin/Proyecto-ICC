@@ -1,13 +1,31 @@
-#Programa Principal
-
-Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
+usuarios = {}
 nombre = ''
 
-print("¡Hola!")
-print("Podemos revisar los siguientes temas:"'\n')
+Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
 
-for i in Temas:
-  print(f"{Temas.index(i)+1}. " + i)
+def ProgramaPrincipal():
+    nombre = input("Ingresa tu usuario: ").capitalize()
+    if nombre in usuarios:
+        print('\n'f"Bienvenido/a de nuevo, {nombre}")
+        continuar()
+    else:
+        print(f"Es un gusto conocerte, {nombre}")
+        usuarios[nombre] = ''
+        question()
+
+
+def continuar():
+    tema = usuarios[nombre]
+    print(f"La ultima vez te quedaste en {tema}")
+    continuar = input("Deseas continuar donde te quedaste? (S?N): ").lower()
+    if continuar == 's':
+        eval(f"{tema}()")
+    elif continuar == 'n':
+        question()
+    else:
+        print("Por favor ingresa 's' para sí o 'n' para no.")
+        continuar()
+
 
 def yourturn():
     a = input('\t')
@@ -28,10 +46,16 @@ def variables():
     print('')
     print("Las variables también pueden almacenar texto.")
     print("Para esto, deben ser declaradas entre comillas de la siguiente manera: a = 'valor'.")
-    print("En la siguiente línea declara una variable 'nombre' cuyo valor sea tu primer nombre.")
-    c = yourturn().replace(' ','')
-    nombre = c.replace('nombre=','').replace('"', '').capitalize()
-    print(f"Un gusto conocerte, {nombre}, lo estás haciendo muy bien.")
+    print("En la siguiente línea declara una variable 'ciudad' cuyo valor sea la ciudad de donde vienes.")
+    c = yourturn()
+    ciudad = c.replace(' ','').replace('ciudad=','').replace('"', '').replace("'", '').replace("'''", '')
+    if '"' not in c and "'" not in c and "'''" not in c:
+        print("Olvidaste colocar las comillas.")
+        print("Tu variable debe verse así")
+        print('\t'f"ciudad = '{ciudad}'")
+        print("Aún así,", end=' ')
+    print(f"{ciudad.capitalize()} es una hermosa ciudad. Lo estás haciendo muy bien.")
+    print("Eso es todo lo que debes saber sobre variables.")
     otra()
 
 
@@ -412,14 +436,17 @@ def strings():
     print('\t'"Tu resultado es:", eval(split))
     otra()
 
-
 def question():
+    print("Podemos revisar los siguientes temas:"'\n')
+    for i in Temas:
+        print(f"{Temas.index(i)+1}. " + i)
     answer = int(input('\n'"Ingresa el número del tema que deseas aprender hoy: "))
     if answer - 1 in range(0, len(Temas)):
         t = Temas[answer-1].lower()
         x = t.replace(' ', '')
         print("¡Buena elección!")
         print(f"Hoy aprenderemos {t}.")
+        usuarios[nombre] = t
         eval(f"{x}()")
     else:
         print("Lo sentimos, el número ingresado no es válido.")
@@ -428,11 +455,12 @@ def question():
 def otra():
     otra = input("Quieres empezar de nuevo? (S/N): ").lower()
     if otra =='s':
-        question()
+        print("")
+        ProgramaPrincipal()
     elif otra == 'n':
         print("¡Hasta luego!")
     else:
         print("Por favor ingresa 's' para sí o 'n' para no.")
         otra()
 
-question()
+ProgramaPrincipal()
