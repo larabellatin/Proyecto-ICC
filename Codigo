@@ -194,6 +194,7 @@ def estructurasdecontrolselectivas():
         print('\t'"print(a,'es igual que', b)")
     print("")
     print("De esta forma puedes hacer cuantas condiciones quieras, usando la cantidad de elif e if que desees")
+    otra()
 
 
 def estructurasdecontrolrepetitivas():
