@@ -203,7 +203,7 @@ def estructurasdecontrolselectivas():
 
     print("")
     print("De esta forma puedes hacer cuantas condiciones quieras, usando la cantidad de elif e if que desees")
-    print(f"Un gusto conocerte, {nombre}, lo estás haciendo muy bien.")
+    print("¡Muy buen trabajo, sigue así!")
     otra()
 
 
@@ -279,7 +279,7 @@ def estructurasdecontrolrepetitivas():
         print("    contador=contador+i")
         print("print(contador)")
     print("")
-    print(f"Un gusto conocerte, {nombre}, lo estás haciendo muy bien.")
+    print("Un gusto haberte conocido, lo estas haciendo muy bien")
     otra()
 
 def listas():
