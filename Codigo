@@ -1,5 +1,9 @@
+import random
+
+
 usuarios = {}
 nombre = ''
+score = 0
 
 Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
 
@@ -13,6 +17,35 @@ def ProgramaPrincipal():
         usuarios[nombre] = ''
         question()
 
+def yourturn():
+    a = input('\t')
+    return a
+
+def check(s, m):
+    #a = answer y s = solucion/ respuesta real
+    global score
+    a = yourturn()
+    if m != "":
+        a = eval(f"'{a}'.{m}")
+    if a == s:
+        print("¡Buen trabajo!")
+        score += 3
+        return True
+    else:
+        a = input("Intentalo de nuevo: ").replace(' ', '')
+        if a == s:
+            print("¡Respuesta correcta!")
+            score += 2
+            return True
+        else:
+            a = input("Una vez más: ").replace(' ', '')
+            if a == s:
+                print("¡Muy bien!")
+                score += 1
+                return True
+            else:
+                print(f"Tu respuesta debió haber sido: {s}")
+                return False
 
 def continuar():
     tema = usuarios[nombre]
@@ -27,10 +60,6 @@ def continuar():
         continuar()
 
 
-def yourturn():
-    a = input('\t')
-    return a
-
 def variables():
   ### info de variables
     print("Lo primero que debes saber sobre las variables es que se usan para almacenar información de cualquier tipo.")
@@ -38,11 +67,7 @@ def variables():
     print('\t'"a = 1+2")
     print("La variable 'a' almacena el valor de 1+2, o sea 3.")
     print("Ahora tú intenta definir una variable b con el número 4 como valor en la siguiente línea.")
-    b = yourturn()
-    if b.replace(' ','') == "b=4":
-        print("¡Buen trabajo!")
-    else:
-        print("Tu respuesta debería verse similar a esto: b = 4")
+    check("b=4", "replace(' ', '')")
     print('')
     print("Las variables también pueden almacenar texto.")
     print("Para esto, deben ser declaradas entre comillas de la siguiente manera: a = 'valor'.")
@@ -85,14 +110,8 @@ def estructurasdecontrolselectivas():
     print("Escribe la condición (if), sólo la condición, que haga que el programa imprima 7 asteriscos cuando el número que ingrese el usuario sea múltiplo de siete")
     print("tomando como base:")
     print("  x=int(input('ingrese número: ')")
-    ter= "if x%7==0"
-    con= input("La condición es: ")
-    if con == ter:
-        print("*******")
-        print("¡bien hecho!")
-    else:
-        print("")
-        print("Debería ser: if x%7==0")
+    print("La condición es:", end='')
+    check("ifx%7==0", "replace(' ', '')")
 
     print("")
     print("Estructuras selectivas dobles")
@@ -116,7 +135,7 @@ def estructurasdecontrolselectivas():
     cla= input("condición falsa: ")
     tu=print("   print('espere')")
     print("")
-    if cli == "if semáforo==verde:" and cla == "else:":
+    if cli == "if semáforo==verde:" or cli == "if semáforo == verde" and cla == "else:":
         print("¡buen trabajo!")
     else:
         print("Deberia ser:")
@@ -331,9 +350,13 @@ def listas():
     print('\t''\t'"*Recordar que la posición dentro de cada lista comienza desde cero")
     print("Ahora es tu turno de aplicar estas funciones a la lista [1, 2, 3, 4, 5]")
     print("En la siguiente línea elimina el número 3 de la lista.")
-    resp = yourturn()
-    eval(resp)
+    check("lista.remove(3)", "")
+    lista.remove(3)
     print("El resultado es:", lista)
+    print("A continuación podrás utilizar cualquiera de las funciones que te hemos enseñado para modificar la lista.")
+    print("La nueva lista es: ", end='')
+    eval(yourturn())
+    print(lista)
     print('\n'"Además, se puede recorrer una lista de principio a fin de dos formas distintas:")
     print('\t'"I. Directa:")
     print('\t''\t'"letras = [A, B, C]")
@@ -391,9 +414,9 @@ def strings():
     print('\t'"print(len(A))")
     print("Inténtalo tú")
     A = 'Hola mundo'
-    d = yourturn()
-    print(">>Tu respuesta es: ", end='')
-    eval(d)
+    check("print(len(A))", "")
+    print(">>La longitud de la frase A es: ", end='')
+    print(len(A))
     print('\t'"*Recuerda: cada elemento dentro de la frase cuenta como carácter.")
     print('\n'"Función find(): Se utiliza para hallar la posición de un “string” contenido en otro.")
     print('\t'"print(A.find(“mundo”))")
@@ -426,14 +449,20 @@ def strings():
     print('\t'"print(lista)")
     print('\t'">>>['Quiero', 'ser', 'un', 'hacker']")
     print("Ahora que conoces todas estas funciones para strings, es tu turno de probarlas.")
-    print("A continuación declara una variable 'miString' con un string que tu escojas como valor usando comillas simples.")
-    miString = yourturn().replace('miString = ','').replace("miString=", '').replace("'", '')
+    print("A continuación declara una variable con un string (de preferencia una frase) de tu elección como valor usando comillas simples.")
+    resp = yourturn()
+    m = resp.index('=')
+    string = resp[(m+1):].strip().replace("'", '')
+    var = resp[:m].strip()
+    if "'" not in resp:
+        print("Olvidaste las comillas simples, pero las hemos agregado por ti.")
+        print(f"Tu respuesta debió haber sido {var} = '{string}'")
     print("Cambia todo el string a mayúsculas:")
-    mayus = yourturn()
-    print('\t'"Tu resultado es:", eval(mayus))
+    check(f"{var}.upper()", "")
+    print('\t'"El resultado es:", string.upper())
     print("Convierte tu string en una lista.")
-    split = yourturn()
-    print('\t'"Tu resultado es:", eval(split))
+    check(f"{var}.split()", "")
+    print('\t'"El resultado es:", string.split())
     otra()
 
 def question():
