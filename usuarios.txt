@@ -1,0 +1,3 @@
+Lara, 34, Variables
+Paola, 74, Strings
+Fernando, 75, Funciones
