@@ -233,7 +233,6 @@ def estructurasdecontrolselectivas():
         print("else:")
         print("  print ('es mayor de edad')")
 
-
     print("")
     print("* La estructura anidada usando elif sería de la siguiente forma:")
     print(" if condición:")
@@ -282,12 +281,21 @@ def estructurasdecontrolselectivas():
         print(" else:")
         print('\t'"print(a,'es igual que', b)")
 
-
     print("")
     print("De esta forma puedes hacer cuantas condiciones quieras, usando la cantidad de elif e if que desees")
     print("¡Muy buen trabajo, sigue así!")
+    print("Inserta 2 números enteros que cumplan esta condición: a > b")
+    a = int(input("\ta = "))
+    b = int(input("\tb = "))
+    if a > b:
+        print("\tTrue")
+        score +=3
+    elif a >= b:
+        print("La condición solicita a > b, no a >= b. Aún así, buen trabajo.")
+        score += 1
+    else:
+        print("Los número no cumplen la condición")
     otra()
-
 
 
 def estructurasdecontrolrepetitivas():
@@ -361,6 +369,13 @@ def estructurasdecontrolrepetitivas():
         print("    contador=contador+i")
         print("print(contador)")
     print("")
+    print("Tenemos un último desafío para ti: ")
+    print("Elige la opción correcta de un programa donde se pueda ingresar la nota de 5 alumnos, el programa debe informar cuantos han aprobado.")
+    print("1. x=0\nsuma=0\nwhile x<6:\n\tnota=int(input('Ingrese la nota: '))\n\tif nota>10:\n\t\tsuma=suma+1\n\tx=x+1\nprint('Han aprobado',suma)")
+    print("2. x=0\nsuma=0\nwhile x<5:\n\tnota=int(input('Ingrese la nota: '))\n\tif nota>10:\n\t\tsuma=suma+1\n\tx=x+1\nprint('Han aprobado',suma)")
+    print("3. x=0\nsuma=0\nwhile x<5:\n\tnota=int(input('Ingrese la nota: '))\n\tif nota<=10:\n\t\tsuma=suma+1\n\tx=x+1\nprint('Han aprobado',suma)")
+    check('2',"strip().replace('.','')")
+    print("")
     print("Un gusto haberte conocido, lo estas haciendo muy bien")
     otra()
 
@@ -407,6 +422,46 @@ def listas():
     print('\t''\t'"letras = [A, B, C]")
     print('\t''\t'"for i in range(len(letras)):")
     print('\t''\t''\t'"print(letras[i], end=" ")")
+    print("Ya estas llegando al final de este tema. Veamos si puedes resolver este reto.")
+    print("Elija la opción correcta de un código que usarán los padres para hacer la lista de la compra , este código debe pedir el número de cosas a comprar y a continuación pedir el nombre del producto.")
+    print("1. numero_de_producto = int(input('¿Cuántos productos va a comprar?: '))")
+    print("if numero_de_producto >=1:")
+    print("\tlista = []")
+    print("\tfor i in range(numero_de_producto-1):")
+    print("\t\tprint('Producto', str(i + 1) + ': ', end='')")
+    print("\t\tpalabra = input()")
+    print("\t\tlista += [palabra]")
+    print("\tprint('La lista de la compra es:', lista)")
+    print("else:")
+    print("\tprint('Error')")
+    print('')
+    print("2.numero_de_producto = input('¿Cuántos productos va a comprar?: '))")
+    print("if numero_de_producto <=1:")
+    print("\tlista = []")
+    print("\tfor i in range(numero_de_producto+1):")
+    print("\t\tprint('Producto', str(i + 1) + ': ', end='')")
+    print("\t\tpalabra = input()")
+    print("\t\tlista += [palabra]")
+    print("\tprint('La lista de la compra es:', lista)")
+    print("else:")
+    print("\tprint('Error')")
+    print('')
+    print("3. numero_de_producto = int(input('¿Cuántos productos va a comprar?: '))")
+    print("if numero_de_producto >=1:")
+    print("\tlista = []")
+    print("\tfor i in range(numero_de_producto):")
+    print("\t\tprint('Producto', str(i + 1) + ': ', end='')")
+    print("\t\tpalabra = input()")
+    print("\t\tlista += [palabra]")
+    print("\tprint('La lista de la compra es:', lista)")
+    print("else:")
+    print("\tprint('Error')")
+    check('3','strip().replace(".","")')
+    print("Última pregunta:")
+    print("Crea una lista con los 3 primeros números primos.")
+    b=check('[1,2,3]', 'strip().replace(" ", "")')
+    if b == False:
+        print("Tu lista debió verse algo así: [1,2,3]")
     print("Eso es todo por hoy.")
     otra()
 
@@ -505,6 +560,18 @@ def strings():
     print("Convierte tu string en una lista.")
     check(f"{var}.split()", "")
     print('\t'"El resultado es:", string.split())
+    print("Para terminar, tenemos unas cuantas preguntas para ti.")
+    print("Pregunta 1:")
+    print("Halla la posición final en la frase hola mundo. Recuerda que se empieza por la posición 0.")
+    check('10', 'strip()')
+    print("Pregunta 2:")
+    print("Pasa la frase contenida dentro de la variable frase a mayúsculas")
+    a= check('frase.upper()', 'strip()')
+    if a == True:
+        print("hola mundo --> HOLA MUNDO")
+    else:
+        print("La respuesta correcta es: frase.upper()")
+    print("Has terminado el tema Strings.")
     otra()
 
 def question():
