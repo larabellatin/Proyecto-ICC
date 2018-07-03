@@ -1,21 +1,48 @@
 import random
 
+def sortLeaderboard(lista):
+    for i in range(len(lista)):
+        max = i
+        for j in range(i, len(lista)):
+            if int(lista[j][1]) > int(lista[max][1]):
+                max = j
+        aux = lista[i]
+        lista[i] = lista[max]
+        lista[max] = aux
+    return lista
 
+
+inputFile = open("usuarios.txt", 'r')
 usuarios = {}
-nombre = ''
+scores = []
+usuarioTema = {}
+for line in inputFile:
+    name,score,tema = line.split(', ')
+    tema = tema.replace('\n','')
+    usuarios[name.capitalize()] = int(score)
+    usuarioTema[name.capitalize()] = tema
+    tupla = [name.capitalize(), score]
+    scores.append(tupla)
+scores = sortLeaderboard(scores)
+inputFile.close()
+
+nombre = input("Ingresa tu usuario: ").capitalize()
+anterior = 0
 score = 0
 
 Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
 
 def ProgramaPrincipal():
-    nombre = input("Ingresa tu usuario: ").capitalize()
-    if nombre in usuarios:
+    if nombre in usuarios.keys():
+        anterior = usuarios[nombre]
         print('\n'f"Bienvenido/a de nuevo, {nombre}")
-        continuar()
+        print(f"Tu high score es {anterior}. Veamos si lo puedes superar.")
+        continuar(nombre)
     else:
         print(f"Es un gusto conocerte, {nombre}")
-        usuarios[nombre] = ''
-        question()
+        scores.append([nombre, 0])
+        usuarios[nombre]= 0
+        usuarioTema[nombre] = question()
 
 def yourturn():
     a = input('\t')
@@ -23,6 +50,7 @@ def yourturn():
 
 def check(s, m):
     #a = answer y s = solucion/ respuesta real
+    #m = modificación
     global score
     a = yourturn()
     if m != "":
@@ -47,8 +75,9 @@ def check(s, m):
                 print(f"Tu respuesta debió haber sido: {s}")
                 return False
 
-def continuar():
-    tema = usuarios[nombre]
+
+def continuar(nombre):
+    tema = usuarioTema[nombre].lower().replace('\n', '')
     print(f"La ultima vez te quedaste en {tema}")
     continuar = input("Deseas continuar donde te quedaste? (S?N): ").lower()
     if continuar == 's':
@@ -59,9 +88,10 @@ def continuar():
         print("Por favor ingresa 's' para sí o 'n' para no.")
         continuar()
 
-
 def variables():
   ### info de variables
+    global score
+    print("")
     print("Lo primero que debes saber sobre las variables es que se usan para almacenar información de cualquier tipo.")
     print("Se usan así:")
     print('\t'"a = 1+2")
@@ -79,13 +109,22 @@ def variables():
         print("Tu variable debe verse así")
         print('\t'f"ciudad = '{ciudad}'")
         print("Aún así,", end=' ')
+    else:
+        score += 3
     print(f"{ciudad.capitalize()} es una hermosa ciudad. Lo estás haciendo muy bien.")
     print("Eso es todo lo que debes saber sobre variables.")
+    print("Ahora deberás resolver el siguiente reto:")
+    print("Un programador quiere hacer un código donde el usuario pueda ingresar dos números mediante la función input() y asignarlos a dos variables que se sumarán. Elige la opción correcta:")
+    print("\t1. a = int(input)\n\tb = int(input)\n\tprint(a+b)")
+    print("\t2. a = int(input())\n\tb = int(input())\n\tprint(a+b)")
+    print("\t3. a = int(input())\n\tb = int(input())\n\tprint('a+b')")
+    check('1',"strip().replace('.','')")
     otra()
 
 
 def estructurasdecontrolselectivas():
  ### info de estructuras selectivas
+    global score
     print("Estructuras de Control Selectivas")
     print("Lo primero que debes saber sobre las estructuras de control selectivas es que se usan para para tomar decisiones del tipo booleano colocando condiciones. Estas condiciones siempre tendran que acabar en verdadero o falso, si es verdadero ejecutaremos un fragmento de código, sino ejecutaremos otro. ")
     print("para esto usaremos if, elif y else.")
@@ -253,6 +292,7 @@ def estructurasdecontrolselectivas():
 
 def estructurasdecontrolrepetitivas():
     ### info de estructuras de control repetitivas
+    global score
     print("Estructuras de Control Repetitivas")
     print("Lo primero que debes saber de las estructuras de control repetitivas es que estas nos permiten ejecutar el mismo código de manera repetitiva mientras se cumpla una condición. En esta estructura usaremos el for, in y while. ")
     print("*Algo importante que hay que saber antes de empezar a aprender esta estructura es que siempre hay que poner una instrucción dentro del bloque que provoque que la condición deje de cumplirse, de lo contrario será un ciclo infinito.")
@@ -326,6 +366,7 @@ def estructurasdecontrolrepetitivas():
 
 def listas():
     ###info de listas
+    global score
     lista=[1, 2, 3, 4, 5]
     print("Las listas son una secuencia de valores encerrados entre corchetes y separados mediante comas.")
     print("Permiten almacenar cualquier tipo de datos o agrupar una secuencia de datos en una sola variable para accederlos por posición.")
@@ -397,6 +438,7 @@ def suma(x, y):
 
 def strings():
   ##info de string
+    global score
     print("La cadena de caracteres, palabras, frases o “strings” es una secuencia de elementos o caráteres ordenados.")
     print("La posición de cada carácter dentro de una cadena empieza en 0.")
     print('\n'"Al declarar una variable con un string como valor se utilizan comillas de la siguiente manera:")
@@ -475,21 +517,55 @@ def question():
         x = t.replace(' ', '')
         print("¡Buena elección!")
         print(f"Hoy aprenderemos {t}.")
-        usuarios[nombre] = t
+        usuarioTema[nombre] = t
         eval(f"{x}()")
     else:
         print("Lo sentimos, el número ingresado no es válido.")
         question()
+    return Temas[answer-1]
+
+def leerLeaderboard():
+    global score
+    global scores
+    scores = cambioLeaderboard(nombre, score)
+    for i in range(0,len(scores)):
+        print(f"{i+1}. {scores[i][0]}: {scores[i][1]}")
 
 def otra():
-    otra = input("Quieres empezar de nuevo? (S/N): ").lower()
-    if otra =='s':
+    global scores
+    print(f"Tu puntaje final es {score} puntos.")
+    if anterior < score:
+        print("Has superado tu high score.")
+        scores = cambioLeaderboard(nombre, score)
+    opcion = input("Quieres empezar de nuevo? (S/N): ").lower()
+    if opcion =='s':
         print("")
         ProgramaPrincipal()
-    elif otra == 'n':
-        print("¡Hasta luego!")
+    elif opcion == 'n':
+        leader = input("Quieres ver el leaderboard? (S/N): ").lower()
+        if leader == 's':
+            print("")
+            leerLeaderboard()
+            otra()
+        else:
+            print("¡Hasta luego!")
     else:
         print("Por favor ingresa 's' para sí o 'n' para no.")
         otra()
+
+def cambioLeaderboard(name, nuevo):
+    global scores
+    global usuarioTema
+    for i in range(0,len(scores)):
+        if scores[i][0] == name:
+            scores[i][1] = nuevo
+    scores = sortLeaderboard(scores)
+    outputFile = open("usuarios.txt",'w+')
+    for i in range(0, len(scores)):
+        n = scores[i][0]
+        p = scores[i][1]
+        t = usuarioTema[n]
+        outputFile.write(f"{str(n)}, {str(p)}, {str(t).capitalize()}\n")
+    return scores
 
 ProgramaPrincipal()
