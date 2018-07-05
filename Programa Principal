@@ -102,7 +102,7 @@ def continuar(nombre):
     print(f"La ultima vez te quedaste en {tema}")
     opc = input("Deseas continuar donde te quedaste? (S?N): ").lower()
     if opc == 's':
-        notas.append(f"TEMA: {tema.capitalize()}")
+        notas.append(f"\n\nTEMA: {tema.capitalize()}")
         print("\nRecuerda que en cualquier momento podrás tomar nota de lo aprendido con solo escribir y apretar 'ENTER'")
         print("Pero ten cuidado de no hacerlo cuando te pidan la respuesta a una pregunta. Tendrás un espacio para hacerlo después de esta.")
         print("Si no quieres escribir nada, simplemente presiona 'ENTER'")
@@ -684,7 +684,7 @@ def question():
         print("¡Buena elección!")
         print(f"Hoy aprenderemos {t}.")
         usuarioTema[nombre] = t
-        notas.append(f"TEMA: {t.capitalize()}")
+        notas.append(f"\n\nTEMA: {t.capitalize()}")
         print("\nRecuerda que en cualquier momento podrás tomar nota de lo aprendido con solo escribir y apretar 'ENTER'")
         print("Pero ten cuidado de no hacerlo cuando te pidan la respuesta a una pregunta. Tendrás un espacio para hacerlo después de esta.")
         print("Si no quieres escribir nada, simplemente presiona 'ENTER'")
@@ -720,7 +720,7 @@ def otra():
         else:
             print("¡Hasta luego!")
             notes()
-            subprocess.call(['open', '-W', NotesFile])
+            subprocess.call(['open', NotesFile])
     else:
         print("Por favor ingresa 's' para sí o 'n' para no.")
         otra()
