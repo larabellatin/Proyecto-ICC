@@ -53,6 +53,7 @@ notas = []
 Temas = ['Variables', 'Estructuras de Control Selectivas', 'Estructuras de Control Repetitivas', 'Listas', 'Funciones', 'Strings']
 
 def ProgramaPrincipal():
+    global anterior
     if nombre in usuarios.keys():
         anterior = usuarios[nombre]
         print('\n'f"Bienvenido/a de nuevo, {nombre}")
